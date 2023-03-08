@@ -1,0 +1,16 @@
+Type=1
+WS=2
+Id=3
+Integer=4
+Char=5
+Semicolom=6
+Equal=7
+Space=8
+Arthmatic_op=9
+Conditaionl_op=10
+Logical_op=11
+N_Line=12
+Ws=13
+';'=6
+'='=7
+'\n'=12
