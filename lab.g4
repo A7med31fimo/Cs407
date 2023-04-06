@@ -9,12 +9,17 @@ print:Print Open_brices_soft  WS* '"' (Id|Integer)* '"' WS* Close_brices_soft WS
 if_codition:IF (WS)? Open_brices_soft WS? condition WS? Close_brices_soft WS? Open_brices WS? ((var WS?)|(if_codition else_if* else*))+ WS? Close_brices;
 else_if:Else WS? if_codition;
 else:Else WS? Open_brices WS? ((var WS?)*) Close_brices;
-var:(WS? Type? WS? Id WS? Equal? WS? '"'? WS? (Integer|Id)?  WS? '"'? WS? Semicolom);
+var:(WS? Type? WS? Id WS? Equal? WS? '"'? WS? (Integer|Id)?  WS? '"'? WS? Semicolom?);
 expression: ((Id|Integer) WS* (Arthmatic_op | Conditaionl_op | Logical_op) Ws* (Id|Integer) N_Line*)+;
 condition:( WS*(WS?(Id|Integer|expression) WS* (WS* Arthmatic_op WS? Id? WS?)? WS? (Conditaionl_op|Logical_op) WS? (Integer|Id|expression)? WS?)+)|True|False;
 for_loop:For WS? Open_brices_soft WS? (WS? var WS? Comma?WS?)* Semicolom?  WS? condition? WS? Semicolom  WS? ((WS? Id( WS? Arthmatic_op WS?|WS? Arthmatic_op WS? Equal WS? Integer)) WS? Comma?WS?)* WS? Close_brices_soft
  WS? Open_brices WS?(for_loop|var*|if_codition)? WS? Close_brices
 ;
+method:(WS* Modifire? WS* ('static')? WS*  Type WS* Id WS* Open_brices_soft WS* (var ','?)* WS* Close_brices_soft WS* Open_brices
+                                         WS*(for_loop? if_codition? var? switch? print? WS)* WS*'return' WS*(Id|Integer)? WS* Semicolom WS*Close_brices)|(WS* Modifire? WS* ('static')? WS*  'void' WS* Id WS* Open_brices_soft WS* (var ','?)* WS* Close_brices_soft WS* Open_brices
+WS*(for_loop? if_codition? var? switch? print? WS)* WS*Close_brices);
+
+Modifire:'public'|'final'|'private'|'protected'|'default';
 True:'true';
 False:'false';
 While:'while';
